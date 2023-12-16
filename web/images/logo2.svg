@@ -1,0 +1,15 @@
+<svg width="118" height="34" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <filter id="svg_3_blur">
+   <feGaussianBlur stdDeviation="0.3" in="SourceGraphic"/>
+  </filter>
+  <filter id="svg_5_blur">
+   <feGaussianBlur stdDeviation="0.3" in="SourceGraphic"/>
+  </filter>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <text style="cursor: move;" transform="matrix(0.876812 0 0 0.876812 0.212678 3.49849)" stroke="#000" filter="url(#svg_3_blur)" font-weight="bold" font-style="normal" xml:space="preserve" text-anchor="start" font-family="'Mulish'" font-size="24" id="svg_3" y="17.30856" x="1.32976" stroke-width="0" fill="#90d7ec">阿八西</text>
+  <text font-weight="bold" style="cursor: move;" transform="matrix(0.959905 0 0 0.959905 2.67105 1.40084)" stroke="#000" filter="url(#svg_5_blur)" xml:space="preserve" text-anchor="start" font-family="'Mulish'" font-size="24" id="svg_5" y="28.89852" x="69.55828" stroke-width="0" fill="#FFAFCC">商城</text>
+ </g>
+</svg>

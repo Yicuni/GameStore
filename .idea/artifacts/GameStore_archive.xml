@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="GameStore archive">
+    <output-path>$PROJECT_DIR$</output-path>
+    <root id="archive" name="GameStore archive.war">
+      <element id="artifact" artifact-name="GameStore" />
+    </root>
+  </artifact>
+</component>
