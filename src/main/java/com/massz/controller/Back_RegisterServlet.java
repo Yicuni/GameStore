@@ -43,7 +43,8 @@ public class Back_RegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
         String gender = req.getParameter("gender");
         String email = req.getParameter("email");
-        int userType = Integer.parseInt(req.getParameter("userType"));
+//        int userType = Integer.parseInt(req.getParameter("userType"));
+        String userType = req.getParameter("userType");
         String bio = req.getParameter("Bio");
         // 检查用户名是否可用
         if (!bookService.isUsernameAvailable(username)) {
@@ -63,7 +64,7 @@ public class Back_RegisterServlet extends HttpServlet {
         System.out.println("userType的值：" + userType);
         // 注册用户
         if (bookService.registerUser(user)) {
-            if (userType == 2) {
+            if (userType.equals("管理员")) {
                 // 玩家类型，可以跳转到前台首页或者其他页面
                 resp.sendRedirect(req.getContextPath() + "/front_login.jsp");
             }

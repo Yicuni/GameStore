@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <title>Miri UI Kit - Login</title>
+    <title>阿八西商城 - 注册</title>
 
     <!-- Vendor css -->
     <link rel="stylesheet" href="vendors/@mdi/font/css/materialdesignicons.min.css">
@@ -26,6 +26,7 @@
 </head>
 <style>
     .tips {
+        font-size: 14px;
         color: red;
     }
 </style>
@@ -59,7 +60,7 @@
         <h3 class="text-center text-white font-weight-light mb-4">请注册</h3>
         <form method="post" action="${pageContext.request.contextPath}/front_register">
             <div class="form-group">
-                <input type="text" placeholder="账号" class="form-control" name="username" id="uname" required/><br/>
+                <input type="text" placeholder="账号" class="form-control" name="username" id="uname" required/>
                 <span class="tips">${requestScope.usernameError}</span>
             </div>
             <div class="form-group">
@@ -90,24 +91,17 @@
             </div>
             <span class="tips">${requestScope.registrationError}</span>
         </form>
-<%--        <div class="d-flex justify-content-between mt-4">--%>
-<%--            <p class="text-white text-center font-weight-light">Login with</p>--%>
-<%--            <p class="text-center mb-0">--%>
-<%--                <a href="#" class="social-login-btn icon-fb"><i class="mdi mdi-qqchat"></i></a>--%>
-<%--                <a href="#" class="social-login-btn icon-twitter"><i class="mdi mdi-wechat"></i></a>--%>
-<%--                <a href="#" class="social-login-btn icon-gmail"><i class="mdi mdi-outlook"></i></a>--%>
-<%--            </p>--%>
-<%--        </div>--%>
     </div>
 </div>
 <footer>
     <div class="container">
-        <nav class="navbar navbar-dark bg-transparent navbar-expand footer-navbar d-block d-sm-flex text-center">
-            <span class="navbar-text">&copy; BootstrapDash. All rights reserved.</span>
+        <nav class="navbar navbar-dark bg-transparent navbar-expand d-block d-sm-flex text-center">
+            <span class="navbar-text text-info">发现全新游戏世界，尽在 <a
+                    href="#" class="text-warning" target="_blank">阿八西商城</a>，释放你的游戏激情。</span>
             <div class="navbar-nav ml-auto justify-content-center">
-                <a href="#" class="nav-link">Support</a>
-                <a href="#" class="nav-link">Terms</a>
-                <a href="#" class="nav-link">Privacy</a>
+                <a href="#" class="nav-link text-info">客服支持</a>
+                <a href="#" class="nav-link text-info">服务条款</a>
+                <a href="#" class="nav-link text-info">隐私政策</a>
             </div>
         </nav>
     </div>

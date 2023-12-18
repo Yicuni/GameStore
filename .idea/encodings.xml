@@ -26,6 +26,9 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/massz/util/FileUtils.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/prop.properties" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/web/WEB-INF/lib" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/web/WEB-INF/lib/jsqlparser-4.7.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/WEB-INF/lib/mybatis-3.5.14.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/web/WEB-INF/lib/pagehelper-6.0.0.jar" charset="GBK" />
     <file url="file://$PROJECT_DIR$/web/assets" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/web/back_gameadd.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/web/back_gameedit.jsp" charset="UTF-8" />

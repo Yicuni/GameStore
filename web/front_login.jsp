@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <title>Miri UI Kit - Login</title>
+    <title>阿八西商城 - 登录</title>
 
     <!-- Vendor css -->
     <link rel="stylesheet" href="vendors/@mdi/font/css/materialdesignicons.min.css">
@@ -23,6 +23,12 @@
 
     <!-- Stylesheet for demo page specific css -->
     <link rel="stylesheet" href="css/demo.css">
+    <script>
+        // JavaScript function to show an alert with an error message
+        function showError(errMsg) {
+            alert(errMsg);
+        }
+    </script>
 </head>
 <style>
     .form-check {
@@ -66,14 +72,10 @@
                 <input type="password" placeholder="密码" class="form-control" name="password" value="${cookie.password.value}">
             </div>
             <div class="form-group">
-<%--                <input type="radio" name="type" checked value="1" />--%>
-<%--                <label class="text-white">玩家</label>--%>
-<%--                <input type="radio" name="type" value="2" />--%>
-<%--                <label class="text-white">管理员</label>--%>
-                <label for="userType">选择登录的用户类型:</label>
+                <label for="userType" class="text-white">选择登录的用户类型:</label>
                 <select class="custom-select" name="userType" id="userType">
-                    <option value="1">玩家</option>
-                    <option value="2">管理员</option>
+                    <option value="玩家">玩家</option>
+                    <option value="管理员">管理员</option>
                 </select>
             </div>
             <div class="form-check">
@@ -87,31 +89,33 @@
                     <p class="text-end text-white">还没有注册账号？去<a href="${pageContext.request.contextPath}/front_register.jsp"
                                                                        class="text-warning">注册</a></p>
                 </div>
-                <div class="text-center text-danger">${errMsg}</div>
+<%--                <div class="text-center text-danger">${errMsg}</div>--%>
             </div>
         </form>
-<%--        <div class="d-flex justify-content-between mt-4">--%>
-<%--            <p class="text-white text-center font-weight-light">Login with</p>--%>
-<%--            <p class="text-center mb-0">--%>
-<%--                <a href="#" class="social-login-btn icon-fb"><i class="mdi mdi-qqchat"></i></a>--%>
-<%--                <a href="#" class="social-login-btn icon-twitter"><i class="mdi mdi-wechat"></i></a>--%>
-<%--                <a href="#" class="social-login-btn icon-gmail"><i class="mdi mdi-outlook"></i></a>--%>
-<%--            </p>--%>
-<%--        </div>--%>
     </div>
 </div>
 <footer>
     <div class="container">
-        <nav class="navbar navbar-dark bg-transparent navbar-expand footer-navbar d-block d-sm-flex text-center">
-            <span class="navbar-text">&copy; BootstrapDash. All rights reserved.</span>
+        <nav class="navbar navbar-dark bg-transparent navbar-expand d-block d-sm-flex text-center">
+            <span class="navbar-text text-info">发现全新游戏世界，尽在 <a
+                    href="#" class="text-warning" target="_blank">阿八西商城</a>，释放你的游戏激情。</span>
             <div class="navbar-nav ml-auto justify-content-center">
-                <a href="#" class="nav-link">Support</a>
-                <a href="#" class="nav-link">Terms</a>
-                <a href="#" class="nav-link">Privacy</a>
+                <a href="#" class="nav-link text-info">客服支持</a>
+                <a href="#" class="nav-link text-info">服务条款</a>
+                <a href="#" class="nav-link text-info">隐私政策</a>
             </div>
         </nav>
     </div>
 </footer>
+<script>
+    function validateForm() {
+        return true;
+    }
+
+    <% if (request.getAttribute("errMsg") != null) { %>
+    showError("<%= request.getAttribute("errMsg") %>");
+    <% } %>
+</script>
 <script src="vendors/jquery/dist/jquery.min.js"></script>
 <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
 <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>

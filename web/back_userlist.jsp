@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Yicunxinglang
-  Date: 2023/12/4
-  Time: 20:15
+  Date: 2023/12/18
+  Time: 14:08
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -46,7 +46,7 @@
             <!-- 左侧菜单 -->
             <ul class="navbar-nav">
                 <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                    <h1 class="welcome-text">早上好，${userInfo.username}  <span
+                    <h1 class="welcome-text">早上好，${userInfo.username} <span
                             class="text-black fw-bold" id="userType">${userInfo.userType}</span></h1>
                     <h3 class="welcome-sub-text">欢迎使用阿八西商城后台管理系统~~~ </h3>
                 </li>
@@ -102,12 +102,12 @@
         <!-- partial:../../partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
-<%--                <li class="nav-item">--%>
-<%--                    <a class="nav-link" href="#">--%>
-<%--                        <i class="mdi mdi-grid-large menu-icon"></i>--%>
-<%--                        <span class="menu-title">概览</span>--%>
-<%--                    </a>--%>
-<%--                </li>--%>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <span class="menu-title">概览</span>
+                    </a>
+                </li>
                 <li class="nav-item nav-category">游戏</li>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
@@ -232,25 +232,20 @@
                 <!-- my-5 代表上下 外边距 距离my-5 -->
                 <div class="row my-5">
                     <div class="col-8 offset-2">
-                        <form method="get" class="form-check-inline">
-                            <label>游戏名称:</label>
-                            <input type="text" name="title" style="width: 200px;"
-                                   class="form-check-inline form-control" value="${param.title}"/>
-                            <label>游戏类型:</label>
-                            <select name="type" class="form-select form-check-inline"
-                                    style="width: 200px;" id="gameTypeSelect">
+                        <form method="get" class="form-check-inline" id="form1">
+                            <label>用户名称:</label>
+                            <input type="text" name="username" style="width: 200px;"
+                                   class="form-check-inline form-control" value="${param.username}"/>
+                            <label>用户类型:</label>
+                            <select name="userType" class="form-select form-check-inline"
+                                    style="width: 200px;" id="userTypeSelect">
                                 <option selected>全部</option>
-                                <option value="开放世界" ${param.type == '开放世界' ? 'selected' : ''}>开放世界
+                                <option value="玩家" ${param.userType == '玩家' ? 'selected' : ''}>玩家
                                 </option>
-                                <option value="角色扮演" ${param.type == '角色扮演' ? 'selected' : ''}>角色扮演
-                                </option>
-                                <option value="体育与竞速" ${param.type == '体育与竞速' ? 'selected' : ''}>
-                                    体育与竞速
+                                <option value="管理员" ${param.userType == '管理员' ? 'selected' : ''}>管理员
                                 </option>
                             </select>
                             <button type="submit" class="btn btn-primary text-white">查询</button>
-                            <a class="btn btn-primary text-white"
-                               href="${pageContext.request.contextPath}/back_gameadd.jsp">新增</a>
                         </form>
                     </div>
                 </div>
@@ -259,50 +254,43 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title text-info">游戏统计表</h4>
+                                <h4 class="card-title text-info">用户统计表</h4>
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th>游戏封面</th>
-                                            <th>游戏名称</th>
-                                            <th>游戏描述</th>
-                                            <th>游戏价格</th>
-                                            <th>游戏销量</th>
-                                            <th>操作</th>
+                                            <th>用户名称</th>
+                                            <th>密码</th>
+                                            <th>邮箱</th>
+                                            <th>性别</th>
+                                            <th>注册时间</th>
+                                            <th>用户类型</th>
+                                            <th>用户个人短介</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="game" items="${back_gameList}">
+                                        <c:forEach var="user" items="${back_userList}">
                                             <tr>
                                                 <td class="py-1">
-                                                    <img src="${pageContext.request.contextPath}/file/${game.filename}"
-                                                         alt="..."
-                                                         style="width: 169px;height: 94px;border-radius: 10px;margin-left: 20px">
+                                                        ${user.username}
                                                 </td>
                                                 <td>
-                                                        ${game.title}
-                                                </td>
-                                                <td style="max-width: 200px" class="overflow-x-scroll">
-                                                        ${game.description}
+                                                        ${user.password}
                                                 </td>
                                                 <td>
-                                                    $ ${game.price}
+                                                        ${user.email}
                                                 </td>
                                                 <td>
-                                                    ${game.saleNum}
+                                                        ${user.gender}
                                                 </td>
                                                 <td>
-                                                    <a href="${pageContext.request.contextPath}/editGame?gameId=${game.gameId}"
-                                                       class="btn btn-sm btn-warning"
-                                                       style="text-decoration: none">
-                                                        修改
-                                                    </a>
-                                                    <a href="${pageContext.request.contextPath}/deleted?gameId=${game.gameId}"
-                                                       class="btn btn-sm btn-warning"
-                                                       style="text-decoration: none">
-                                                        删除
-                                                    </a>
+                                                        ${user.registrationTime}
+                                                </td>
+                                                <td>
+                                                        ${user.userType}
+                                                </td>
+                                                <td>
+                                                        ${user.bio}
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -317,7 +305,7 @@
             <footer class="footer">
                 <div class="d-sm-flex justify-content-center justify-content-sm-between">
                     <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">探索无尽的游戏世界，尽在 <a
-                            href="#" target="_blank">游戏狂热商城</a>，激发您的游戏激情。</span>
+                href="#" target="_blank">游戏狂热商城</a>，激发您的游戏激情。</span>
                     <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">保持更新，不错过任何独特的游戏体验！&nbsp;© 2023。保留所有权利。</span>
                 </div>
             </footer>
@@ -326,31 +314,21 @@
 </div>
 <script>
     function setSelectedOption() {
-        const type = '<%= request.getParameter("type") %>';
-        const selectElement = document.getElementById('gameTypeSelect');
+        const userType = '<%= request.getParameter("userType") %>';
+        const selectElement = document.getElementById('userTypeSelect');
 
         for (let i = 0; i < selectElement.options.length; i++) {
-            if (selectElement.options[i].value === type) {
+            if (selectElement.options[i].value === userType) {
                 selectElement.options[i].selected = true;
                 break;
             }
         }
     }
 
-    // Call the function on page load
     window.onload = function () {
         setSelectedOption();
     };
 </script>
-<%--<script>--%>
-<%--    // 获取用户类型的元素--%>
-<%--    var userTypeElement = document.getElementById('userType');--%>
-
-<%--    // 判断用户类型是否为0，如果是则修改内容为管理员--%>
-<%--    if ('${userInfo.userType}' === '0') {--%>
-<%--        userTypeElement.textContent = '管理员';--%>
-<%--    }--%>
-<%--</script>--%>
 <script src="vendors/js/vendor.bundle.base.js"></script>
 <script src="vendors/chart.js/Chart.min.js"></script>
 <script src="vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
@@ -364,3 +342,4 @@
 <script src="js/Chart.roundedBarCharts.js"></script>
 </body>
 </html>
+

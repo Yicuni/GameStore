@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <title>Miri UI Kit - Profile</title>
+    <title>阿八西商城 - 玩家个人资料页面</title>
 
     <!-- Vendor css -->
     <link rel="stylesheet" href="vendors/@mdi/font/css/materialdesignicons.min.css">
@@ -72,13 +72,13 @@
                 <a href="${pageContext.request.contextPath}/logout" class="text-danger"
                    style="font-size: 18px;margin-right: 50px">退出登录？</a>
             </ul>
-            <ul class="navbar-nav my-lg-auto">
-                <form class="form-inline my-2 my-lg-0" action="index.html">
-                    <input class="form-control mr-sm-2" type="search" placeholder="搜索喜欢的游戏吧~"
-                           aria-label="Search">
-                    <button class="btn btn-success" type="submit">搜索</button>
-                </form>
-            </ul>
+<%--            <ul class="navbar-nav my-lg-auto">--%>
+<%--                <form class="form-inline my-2 my-lg-0" action="index.html">--%>
+<%--                    <input class="form-control mr-sm-2" type="search" placeholder="搜索喜欢的游戏吧~"--%>
+<%--                           aria-label="Search">--%>
+<%--                    <button class="btn btn-success" type="submit">搜索</button>--%>
+<%--                </form>--%>
+<%--            </ul>--%>
         </div>
     </nav>
 </header>
@@ -143,12 +143,13 @@
 </div>
 <footer>
     <div class="container">
-        <nav class="navbar navbar-light bg-transparent navbar-expand footer-navbar d-block d-sm-flex text-center">
-            <span class="navbar-text">&copy; BootstrapDash. All rights reserved.</span>
+        <nav class="navbar navbar-dark bg-transparent navbar-expand d-block d-sm-flex text-center">
+            <span class="navbar-text text-info">发现全新游戏世界，尽在 <a
+                    href="#" class="text-warning" target="_blank">阿八西商城</a>，释放你的游戏激情。</span>
             <div class="navbar-nav ml-auto justify-content-center">
-                <a href="#" class="nav-link">Support</a>
-                <a href="#" class="nav-link">Terms</a>
-                <a href="#" class="nav-link">Privacy</a>
+                <a href="#" class="nav-link text-info">客服支持</a>
+                <a href="#" class="nav-link text-info">服务条款</a>
+                <a href="#" class="nav-link text-info">隐私政策</a>
             </div>
         </nav>
     </div>

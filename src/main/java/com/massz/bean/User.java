@@ -9,15 +9,14 @@ public class User {
     private String email;
     private String registrationTime;
 
-    private int userType;
+    private String userType;
 
     private String Bio;
 
     public User() {
-
     }
 
-    public User(int userId, String username, String password, String gender, String email, String registrationTime, int userType, String bio) {
+    public User(int userId, String username, String password, String gender, String email, String registrationTime, String userType, String bio) {
         UserId = userId;
         this.username = username;
         this.password = password;
@@ -76,11 +75,11 @@ public class User {
         this.registrationTime = registrationTime;
     }
 
-    public int getUserType() {
+    public String getUserType() {
         return userType;
     }
 
-    public void setUserType(int userType) {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 

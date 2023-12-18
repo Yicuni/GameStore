@@ -121,4 +121,51 @@ public class BookService {
         }
         return false;
     }
+
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<>();
+        //创建查询 获取数据库连接
+        QueryRunner qr = new QueryRunner(DbcpDatasource.getDs());
+        //定义 要执行sql
+        String sql = "select userid, username, password, email,gender, registrationtime, usertype, bio from users order by userId desc";
+        //执行sql
+        try {
+            userList = qr.query(sql, new BeanListHandler<>(User.class));
+        } catch (SQLException e) {
+            System.out.println("获取所有的图书异常:" + e);
+        }
+        return userList;
+    }
+
+
+
+    public List<User> getUsersByCond(String username, String userType) {
+        List<User> userList = new ArrayList<>();
+        //创建查询 获取数据库连接
+        QueryRunner qr = new QueryRunner(DbcpDatasource.getDs());
+        try {
+            userType = "全部".equals(userType) ? null : userType;
+            //定义 要执行sql
+            String sql = "select userid, username, password, email, gender, registrationtime, usertype, bio from users where 1=1";
+            if (username != null) {
+                username = "%" + username + "%";
+                sql += " and username like ? ";
+            }
+            if (userType != null) {
+                sql += " and userType = ? ";
+            }
+            sql += " order by userId desc ";
+            //执行sql
+            if (username != null && userType != null) {
+                userList = qr.query(sql, new BeanListHandler<>(User.class), username, userType);
+            } else if (userType != null) {
+                userList = qr.query(sql, new BeanListHandler<>(User.class), userType);
+            } else if (username != null) {
+                userList = qr.query(sql, new BeanListHandler<>(User.class), username);
+            }
+        } catch (SQLException e) {
+            System.out.println("获取所有的信息异常:" + e);
+        }
+        return userList;
+    }
 }

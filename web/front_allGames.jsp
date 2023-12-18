@@ -10,7 +10,7 @@
 <html>
 <head>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <title>Miri UI Kit</title>
+    <title>阿八西商城</title>
 
     <!-- Vendor css -->
     <link rel="stylesheet" href="vendors/@mdi/font/css/materialdesignicons.min.css">
@@ -103,9 +103,9 @@
                    style="font-size: 18px;margin-right: 50px">退出登录？</a>
             </ul>
             <ul class="navbar-nav my-lg-auto">
-                <form class="form-inline my-2 my-lg-0" action="index.html">
+                <form method="get" class="form-inline my-2 my-lg-0" action="${pageContext.request.contextPath}/search">
                     <input class="form-control mr-sm-2" type="search" placeholder="搜索喜欢的游戏吧~"
-                           aria-label="Search">
+                           aria-label="Search" name="searchTerm" required>
                     <button class="btn btn-success" type="submit">搜索</button>
                 </form>
             </ul>
@@ -134,7 +134,9 @@
                          style="width: 169px;height: 94px;padding-left: 20px">
                 </div>
                 <div class="p-2" style="font-family: 'Roboto Light';max-width: 800px;max-height: 110px;">
-                    <a href="#" class="text-danger" style="text-decoration: none">${allgames.title}</a><br/><br/>
+                    <a href="#" class="text-danger" style="text-decoration: none">
+                        <a href="${pageContext.request.contextPath}/detailpage?gameId=${allgames.gameId}">${allgames.title}</a>
+                    </a><br/><br/>
                     <span class="text-dark"
                           style="font-size: 16px;font-family: 好运藏在努力里">${allgames.description}</span>
                 </div>
@@ -146,11 +148,12 @@
 <footer>
     <div class="container">
         <nav class="navbar navbar-dark bg-transparent navbar-expand d-block d-sm-flex text-center">
-            <span class="navbar-text text-warning">&copy; BootstrapDash. All rights reserved.</span>
+            <span class="navbar-text text-info">发现全新游戏世界，尽在 <a
+                    href="#" class="text-warning" target="_blank">阿八西商城</a>，释放你的游戏激情。</span>
             <div class="navbar-nav ml-auto justify-content-center">
-                <a href="#" class="nav-link text-warning">Support</a>
-                <a href="#" class="nav-link text-warning">Terms</a>
-                <a href="#" class="nav-link text-warning">Privacy</a>
+                <a href="#" class="nav-link text-info">客服支持</a>
+                <a href="#" class="nav-link text-info">服务条款</a>
+                <a href="#" class="nav-link text-info">隐私政策</a>
             </div>
         </nav>
     </div>

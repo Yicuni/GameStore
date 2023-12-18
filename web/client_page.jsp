@@ -10,7 +10,7 @@
 <html>
 <head>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <title>Miri UI Kit</title>
+    <title>阿八西商城</title>
 
     <!-- Vendor css -->
     <link rel="stylesheet" href="vendors/@mdi/font/css/materialdesignicons.min.css">
@@ -92,9 +92,9 @@
                    style="font-size: 18px;margin-right: 50px">退出登录？</a>
             </ul>
             <ul class="navbar-nav my-lg-auto">
-                <form class="form-inline my-2 my-lg-0" action="index.html">
+                <form method="get" class="form-inline my-2 my-lg-0" action="${pageContext.request.contextPath}/search">
                     <input class="form-control mr-sm-2" type="search" placeholder="搜索喜欢的游戏吧~"
-                           aria-label="Search">
+                           aria-label="Search" name="searchTerm" required>
                     <button class="btn btn-success" type="submit">搜索</button>
                 </form>
             </ul>
@@ -177,9 +177,7 @@
                             <div class="col-md-8">
                                 <div class="card-body overflow-auto" style="max-height: 188px">
                                     <h3 class="card-title text-danger">
-                                            <%--                                            <a href="${pageContext.request.contextPath}/detailpage?id=${game.gameId}">${hotnewgames.title}</a>--%>
                                         <a href="${pageContext.request.contextPath}/detailpage?gameId=${hotnewgames.gameId}">${hotnewgames.title}</a>
-
                                     </h3>
                                     <div class="overflow-hidden">
                                         <p class="card-text">${hotnewgames.description}</p>
@@ -203,9 +201,10 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body overflow-auto" style="max-height: 188px">
-                                    <h3 class="card-title text-danger">${hotsale.title}</h3>
+                                    <h3 class="card-title text-danger">
+                                        <a href="${pageContext.request.contextPath}/detailpage?gameId=${hotsale.gameId}">${hotsale.title}</a>
+                                    </h3>
                                     <div class="overflow-hidden">
-
                                         <p class="card-text">${hotsale.description}</p>
                                         <p class="card-text">${hotsale.price}</p>
                                         <p class="card-text">${hotsale.releaseDate}</p>
@@ -227,7 +226,9 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body overflow-auto" style="max-height: 188px">
-                                    <h3 class="card-title text-danger">${upcominggames.title}</h3>
+                                    <h3 class="card-title text-danger">
+                                            ${upcominggames.title}
+                                    </h3>
                                     <div class="overflow-hidden">
                                         <p class="card-text">${upcominggames.description}</p>
                                         <p class="card-text">${upcominggames.price}</p>
@@ -245,11 +246,12 @@
 <footer>
     <div class="container">
         <nav class="navbar navbar-dark bg-transparent navbar-expand d-block d-sm-flex text-center">
-            <span class="navbar-text text-warning">&copy; BootstrapDash. All rights reserved.</span>
+            <span class="navbar-text text-info">发现全新游戏世界，尽在 <a
+                    href="#" class="text-warning" target="_blank">阿八西商城</a>，释放你的游戏激情。</span>
             <div class="navbar-nav ml-auto justify-content-center">
-                <a href="#" class="nav-link text-warning">Support</a>
-                <a href="#" class="nav-link text-warning">Terms</a>
-                <a href="#" class="nav-link text-warning">Privacy</a>
+                <a href="#" class="nav-link text-info">客服支持</a>
+                <a href="#" class="nav-link text-info">服务条款</a>
+                <a href="#" class="nav-link text-info">隐私政策</a>
             </div>
         </nav>
     </div>

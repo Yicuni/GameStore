@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
         //获取前端传递的参数
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        int userType = Integer.parseInt(req.getParameter("userType"));
+        String userType = req.getParameter("userType");
         String rm = req.getParameter("rm");
         HttpSession session = req.getSession();
         System.out.println("是否记住密码：" + rm);
@@ -34,11 +34,12 @@ public class LoginServlet extends HttpServlet {
         // 处理登录结果
         if (u != null) {
             // 登录成功
-            if (userType == 1) {
+            if (userType.equals("玩家")) {
                 //此时校验通过，跳转到列表页面
                 User user = new User();
                 user.setUsername(username);
                 user.setPassword(password);
+                user.setUserType(userType);
                 session.setAttribute("userInfo", user);
 
                 if ("on".equals(rm)) {
@@ -64,11 +65,12 @@ public class LoginServlet extends HttpServlet {
                 }
                 // 玩家类型，跳转到前台首页
                 resp.sendRedirect(req.getContextPath() + "/games");
-            } else if (userType == 2) {
+            } else if (userType.equals("管理员")) {
                 //此时校验通过，跳转到列表页面
                 User user = new User();
                 user.setUsername(username);
                 user.setPassword(password);
+                user.setUserType(userType);
                 session.setAttribute("userInfo", user);
 
                 if ("on".equals(rm)) {
@@ -94,12 +96,10 @@ public class LoginServlet extends HttpServlet {
                 }
                 // 管理员类型，跳转到后台首页
                 resp.sendRedirect(req.getContextPath() + "/back_gamelist");
-            } else {
-                // 其他类型，可以根据需要进行相应处理
-                resp.sendRedirect("error.jsp");
             }
         } else {
             // 登录失败
+            req.setAttribute("errMsg", "无效的用户名或密码。请重试。");
             req.getRequestDispatcher("/front_login.jsp").forward(req, resp);
         }
     }

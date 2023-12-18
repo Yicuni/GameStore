@@ -56,14 +56,6 @@ public class Front_RegisterServlet extends HttpServlet {
             return;
         }
 
-        // 创建用户对象
-//        Player player = new Player();
-//        player.setUsername(username);
-//        player.setPassword(password);
-//        player.setGender(gender);
-//        player.setEmail(email);
-//        player.setJoined((joined));
-//        player.setSelfspeech(selfspeech);
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);

@@ -1,19 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: Yicunxinglang
-  Date: 2023/12/5
-  Time: 23:27
+  Date: 2023/12/18
+  Time: 13:44
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <title>阿八西商城 - 游戏详情页面</title>
+    <title>阿八西商城 - 尽情搜索</title>
 
     <!-- Vendor css -->
     <link rel="stylesheet" href="vendors/@mdi/font/css/materialdesignicons.min.css">
@@ -24,17 +21,53 @@
     <!-- Stylesheet for demo page specific css -->
     <link rel="stylesheet" href="css/demo.css">
 </head>
-<body>
-<header class="miri-ui-kit-header header-navbar-only header-bg-2">
+<style>
+    .transparent-gray-background {
+        border-radius: 5px;
+        background: linear-gradient(rgba(192, 192, 192, 0.8), rgba(192, 192, 192, 0.5));
+    }
+
+    body, p, ul, ol, dl, dt, h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul, ol {
+        list-style: none;
+    }
+
+    input {
+        border: none;
+        outline: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .title-hover:hover {
+        color: #0abfe6;
+    }
+
+    .bg-gradient-black {
+        /*background-image: -webkit-gradient(linear, left top, left bottom, from(#e4e5e7), to(#999999));*/
+        background-image: linear-gradient(#ffffff, #ffffff);
+    }
+
+    body {
+        font-size: 16px;
+    }
+</style>
+<body class="bg-gradient-black">
+<header class="miri-ui-kit-header">
     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent fixed-on-scroll">
         <a class="navbar-brand" href="${pageContext.request.contextPath}/games">
-            <img src="assets/images/logo.svg" alt="logo" style="width: 99px;height: 30px">
+            <img src="assets/images/logo.svg" style="width: 99px;height: 30px">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#miriUiKitNavbar"
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#miriUiKitNavbar"
                 aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
             <span class="mdi mdi-menu"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="miriUiKitNavbar">
             <ul class="navbar-nav m-lg-auto">
                 <li class="nav-item">
@@ -65,9 +98,9 @@
                 </li>
             </ul>
             <ul class="navbar-nav my-lg-auto">
-                <a href="${pageContext.request.contextPath}/user_self_profile?username=${playerInfo.username}"
+                <a href="${pageContext.request.contextPath}/user_self_profile?username=${userInfo.username}"
                    class="text-info"
-                   style="font-size: 18px;margin-right: 50px">看！那是飞机！那是${playerInfo.username}！</a>
+                   style="font-size: 18px;margin-right: 50px">看！那是飞机！那是${userInfo.username}！</a>
                 <a href="${pageContext.request.contextPath}/logout" class="text-danger"
                    style="font-size: 18px;margin-right: 50px">退出登录？</a>
             </ul>
@@ -80,36 +113,40 @@
             </ul>
         </div>
     </nav>
-</header>
-<div class="container">
-    <!-- 游戏封面区域 -->
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="${pageContext.request.contextPath}/file/${hngames.filename}" class="img-fluid" alt="游戏封面">
-            </div>
-            <div class="col-md-6">
-                <div class="container-fluid">
-                    <h2 class="mt-1">${hngames.title}</h2>
-                    <p class="mt-3">游戏类型：${hngames.type}</p>
-                    <p class="mt-3">发布日期：${hngames.releaseDate}</p>
-                    <p class="mt-3">标签：生存、动作</p>
-                    <p class="mt-3">评分：暂无</p>
-                    <a href="${pageContext.request.contextPath}/addlibrary?gameId=${hngames.gameId}&playerId=${getplayerid}" class="btn btn-primary text-white mt-3" style="text-decoration: none">立刻购买！</a>
-                </div>
-            </div>
-        </div>
+    <div class="miri-ui-kit-header-content text-center text-white d-flex flex-column justify-content-center align-items-center">
+        <img src="images/images/logo_icon.svg" alt="logo" height="78" width="78" class="mb-4">
+        <h1 class="display-3 text-white">阿八西商城</h1>
+        <p class="h3 font-weight-light text-white">欢迎光临阿八西商城，尽享精选好货，畅享优质购物体验！</p>
+        <p class="py-3">
+            <a href="#demo-content" class="btn btn-primary">开始探索阿八西商城</a>
+        </p>
     </div>
-
-    <!-- 游戏描述区域 -->
-    <div class="container mt-4">
-        <h3>游戏描述</h3>
-        <p>${hngames.description}</p>
-        <p>主要特点：</p>
-        <ul>
-            <li>好玩</li>
-            <li>有趣</li>
-        </ul>
+</header>
+<div class="container content-wrapper overflow-hidden" id="demo-content">
+    <div class="container" style="padding: 0;">
+        <c:if test="${not empty searched_games}">
+            <h2 style="font-family: 好运藏在努力里">搜索页面</h2>
+            <h4 style="font-family: 好运藏在努力里">当前页面搜索结果：</h4>
+            <c:forEach var="s_games" items="${searched_games}" varStatus="status">
+                <div class="d-flex mb-3 transparent-gray-background">
+                    <div class="p-2 text-danger" style="margin-left: 10px;width: 31.19px;">
+                        <p style="padding-top: 35px">${status.index + 1}</p>
+                    </div>
+                    <div class="p-2">
+                        <img src="${pageContext.request.contextPath}/file/${s_games.filename}" alt="..."
+                             style="width: 169px;height: 94px;padding-left: 20px">
+                    </div>
+                    <div class="p-2" style="font-family: 'Roboto Light';max-width: 800px;max-height: 110px;">
+                        <a href="#" class="text-danger" style="text-decoration: none">
+                            <a href="${pageContext.request.contextPath}/detailpage?gameId=${s_games.gameId}">${s_games.title}</a>
+                        </a><br/><br/>
+                        <span class="text-dark"
+                              style="font-size: 16px;font-family: 好运藏在努力里">${s_games.description}</span>
+                    </div>
+                    <div class="ml-auto p-2"><br/><br/>$${s_games.price}</div>
+                </div>
+            </c:forEach>
+        </c:if>
     </div>
 </div>
 <footer>
@@ -131,3 +168,4 @@
 <script src="js/miri-ui-kit.js"></script>
 </body>
 </html>
+

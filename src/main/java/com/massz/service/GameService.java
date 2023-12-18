@@ -31,7 +31,7 @@ public class GameService {
      * @param password 密码
      * @return true:用户名、密码正确，false:用户名或密码不正确
      */
-    public User checkPlayer(String username, String password, int userType) {
+    public User checkPlayer(String username, String password, String userType) {
         //创建查询 获取数据库连接s
         QueryRunner qr = new QueryRunner(DbcpDatasource.getDs());
         //定义 要执行sql
@@ -221,6 +221,26 @@ public class GameService {
             System.out.println("处理购买异常信息：" + e);
         }
         return false;
+    }
+
+    public List<Game> searchGamesByName(String title) {
+        List<Game> gameList = new ArrayList<>();
+        QueryRunner qr = new QueryRunner(DbcpDatasource.getDs());
+        try {
+            //定义 要执行sql
+            String sql = "select gameid,title,description,price,salenum,releasedate,type,filename,filepath from game where 1=1";
+            if (title != null) {
+                title = "%" + title + "%";
+                sql += " and title like ? ";
+            }
+            sql += " order by gameid desc ";
+            if (title != null) {
+                gameList = qr.query(sql, new BeanListHandler<>(Game.class), title);
+            }
+        } catch (SQLException e) {
+            System.out.println("获取所有的信息异常:" + e);
+        }
+        return gameList;
     }
 
 }
